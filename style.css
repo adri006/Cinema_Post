@@ -1,12 +1,15 @@
 body{
     margin: 0;
 }
+
 *{
     font-family: "Lexend",sans-serif;
-}
+} 
+
 .header{
     background: blueviolet;
 }
+
 .header__container{
     padding: 20px 0 0 0 ;
     max-width: 1300px;
@@ -16,6 +19,7 @@ body{
     display: flex;
     justify-content: space-between;
 }
+
 .logo{
     display: flex;
     align-items: center;
@@ -24,13 +28,15 @@ body{
     font-weight: 700;
     font-size: 30px;
 }
+
 .header__logo img{
     width: 50px;
 }
+
 .header__nav-bar{
-    gap: 15px;
-    
+    gap: 15px;    
 }
+
 .nav-bar__button{
     width: 150px;
     height: 40px;
@@ -39,42 +45,51 @@ body{
     font-weight: 700;
     border-radius: 15px;
 }
+
 .nav-bar__button:hover{
     background: lightgray;
     cursor: pointer;
 }
+
 .header-blocks{
     display: flex;
     align-items: center;
 }
+
 .search__input{
     padding: 5px;
     border-radius: 20px;
     width: 200px;
     height: 30px;
 }
+
 .container{
     display: flex;
     max-width: 1200px;
     margin: 0 auto;
 }
+
 .movies{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
 }
+
 .movie{
     width: 240px;
     margin: 10px;
     position: relative;
 }
+
 .movie__cover-inner{
     position: relative;
     height: 360px;
 }
+
 .movie__cover-inner:hover{
     background: gray;
 }
+
 .movie__cover{
     max-height: 100%;
 }

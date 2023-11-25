@@ -1,3 +1,4 @@
+
 const movie = document.querySelector(".movies")
 const form = document.querySelector("form");
 const search = document.querySelector(".search__input");
@@ -56,45 +57,58 @@ document.addEventListener("DOMContentLoaded", function() {
       }
       
       function createMovieCard(elem) {
-          const createEl = (tag, className) => {
-            const el = document.createElement(tag);
-            el.className = className;
-            return el;
-          };
-        
-          const card = createEl("div", "movie");
-          const coverInner = createEl("div", "movie__cover-inner");
-          const cover = createEl("img", "movie__cover");
-          const coverEffect = createEl("div", "movie__cover--effect");
-          const info = createEl("div", "movie-info");
-          const [info__left, info__right] = ["movie-info__left", "movie-info__right"].map((className) => createEl("div", className));
-          const [title, category, average, favorite__heart] = ["movie__title", "movie__category", "movie__avarage movie__avarage--green", "favorite-movie"].map((className) => createEl("div", className));
-        
-          cover.src = elem.posterUrl;
-          title.textContent = elem.nameRu;
-          category.textContent = elem.genres[0].genre;
-          average.textContent = elem.rating;
-        
-          coverInner.append(cover, coverEffect);
-          info.append(info__left, info__right, average);
-          info__left.append(title, category);
-          info__right.appendChild(favorite__heart);
-          card.append(coverInner, info);
-        
-          const heartSrc = isFavorite(elem) 
-          ? "media/heart.png" 
+        let card = document.createElement("div");
+        let coverInner = document.createElement("div");
+        let cover = document.createElement("img");
+        let coverEffect = document.createElement("div");
+        let info = document.createElement("div");
+        let info__left = document.createElement("div");
+        let info__right = document.createElement("div")
+        let title = document.createElement("div");
+        let category = document.createElement("div");
+        let average = document.createElement("div");
+        let favorite__heart = document.createElement("img")
+      
+        card.className = "movie";
+        coverInner.className = "movie__cover-inner";
+        cover.src = elem.posterUrl; 
+        cover.className = "movie__cover";
+        coverEffect.className = "movie__cover--effect";
+        info.className = "movie-info";
+        info__left.className = "movie-info__left"
+        info__right.className = "movie-info__right"
+        title.className = "movie__title";
+        category.className = "movie__category";
+        average.className = "movie__avarage movie__avarage--green";
+        favorite__heart.className = "favorite-movie"
+      
+        title.textContent = elem.nameRu;
+        category.textContent = elem.genres[0].genre; 
+        average.textContent = elem.rating;
+      
+        coverInner.appendChild(cover ,coverEffect);
+        info.appendChild(info__left);
+        info.appendChild(info__right );
+        info.appendChild(average);
+        info__left.appendChild(title ,category);
+        info__left.appendChild(category);
+        info__right.appendChild(favorite__heart)
+        card.appendChild(coverInner);
+        card.appendChild(info)
+    
+        favorite__heart.src = isFavorite(elem)
+          ? "media/heart.png"
           : "media/empty-heart.png";
-          favorite__heart.src = heartSrc;
-        
-          favorite__heart.addEventListener("click", () => {
+      
+        favorite__heart.addEventListener("click", () => {
             toggleFavorite(elem);
-            favorite__heart.src = isFavorite(elem) 
-            ? "media/heart.png" 
-            : "media/empty-heart.png";
+            favorite__heart.src = isFavorite(elem)
+              ? "media/heart.png"
+              : "media/empty-heart.png";
           });
-        
-          return card;
-        }
+    
+        return card;
+      }
       
       function getLocal() {
         if (!localStorage.getItem("films")) {
@@ -117,7 +131,7 @@ document.addEventListener("DOMContentLoaded", function() {
         let data = JSON.parse(localStorage.getItem("films")) || [];
         return data.findIndex((item) => item.filmId === elem.filmId) !== -1;
       }
-      
+
       function toggleFavorite(elem) {
         let data = JSON.parse(localStorage.getItem("films")) || [];
         const existingFilmIndex = data.findIndex((item) => {
